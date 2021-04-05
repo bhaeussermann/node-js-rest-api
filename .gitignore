@@ -1,0 +1,14 @@
+# IDE config folders
+.vscode/
+
+# Dependency directories
+node_modules/
+
+# Build artifacts
+dist/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
