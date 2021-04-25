@@ -1,11 +1,15 @@
 {
-  "name": "northwind-api-article",
+  "name": "employees-api",
   "version": "1.0.0",
-  "description": "Hello",
+  "description": "A REST service for managing an employees data store",
   "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Bernhard Häussermann",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
