@@ -5,11 +5,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node src/server.js"
+    "run": "node src/server.js",
+    "run:watch": "nodemon src/server.js --watch src",
+    "start": "npm run run:watch"
   },
   "author": "Bernhard Häussermann",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
