@@ -1,13 +1,23 @@
 'use strict';
 
 import express from 'express';
+import { EmployeesService } from './services/employees-service.js';
+import { EmployeesController } from './controllers/employees-controller.js';
 
 const app = express();
 const port = 3000;
 
-app
-  .route('/greeting')
-  .get((_req, res) => res.json('hello world!'));
+app.use(express.json());
+
+EmployeesController.registerRoutes(app, new EmployeesService());
+
+app.use((err, _req, res, _next) => {
+  console.error(err);
+  res.status(err.status || 500).json({
+    message: err.message,
+    errors: err.errors
+  });
+});
 
 app.listen(port);
 
