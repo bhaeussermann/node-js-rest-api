@@ -24,7 +24,8 @@ export class EmployeesService {
     return this.employees;
   }
 
-  get(employeeId) {
+  async get(employeeId) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const employee = this.employees.find(e => e.id === employeeId);
     if (!employee) throw new EmployeeNotFoundError(employeeId);
     return employee;
