@@ -1,7 +1,7 @@
 'use strict';
 
 import express from 'express';
-import * as OpenApiValidator from 'express-openapi-validator';
+import OpenApiValidator from 'express-openapi-validator';
 import { EmployeesService } from './services/employees-service.js';
 import { EmployeesController } from './controllers/employees-controller.js';
 
