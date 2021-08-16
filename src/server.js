@@ -1,7 +1,7 @@
 'use strict';
 
 import express from 'express';
-import yaml from 'yamljs';
+import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import OpenApiValidator from 'express-openapi-validator';
 import { EmployeesService } from './services/employees-service.js';
@@ -12,11 +12,24 @@ const port = 3000;
 
 app.use(express.json());
 
-const apiSpec = yaml.load('./src/api-spec.yaml');
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(apiSpec));
+const swaggerJsDocOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Northwind',
+      version: '1.0.0',
+      description: 'A simple REST API for providing basic CRUD-access to the employees in a Northwind database.'
+    }
+  },
+  apis: ['./src/controllers/*.js', './src/express-error.js']
+};
+const apiSpec = swaggerJsDoc(swaggerJsDocOptions);
+
+app.get('/swagger.json', (_req, res) => res.json(apiSpec));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(null, { swaggerOptions: { url: '/swagger.json' } }));
 
 app.use(OpenApiValidator.middleware({
-  apiSpec: './src/api-spec.yaml',
+  apiSpec,
   validateRequests: true,
   validateResponses: true
 }));
