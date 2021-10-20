@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @openapi
  * components:
@@ -11,8 +9,7 @@
  *           type: string
  */
 export class ExpressError extends Error {
-  constructor(status, message) {
+  constructor(public status: number, message: string) {
     super(message);
-    this.status = status;
   }
 }

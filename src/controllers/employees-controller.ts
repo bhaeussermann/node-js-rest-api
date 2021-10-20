@@ -1,10 +1,8 @@
-'use strict';
-
 import express from 'express';
 import asyncHandler from 'express-async-handler';
-import { EmployeesService } from '../services/employees-service.js';
-import { EmployeeNotFoundError } from '../services/employee-not-found-error.js';
-import { ExpressError } from '../express-error.js';
+import { EmployeesService } from '../services/employees-service';
+import { EmployeeNotFoundError } from '../services/employee-not-found-error';
+import { ExpressError } from '../express-error';
 
 /**
  * @openapi
@@ -49,7 +47,7 @@ export class EmployeesController {
    * @param {express.Express} app The Express app to add the employees routes to.
    * @param {EmployeesService} service The employees service implementing the employees operations.
    */
-  static registerRoutes(app, service) {
+  static registerRoutes(app: express.Express, service: EmployeesService) {
     /**
      * @openapi
      * /employees:
