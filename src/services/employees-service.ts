@@ -1,8 +1,9 @@
-'use strict';
-
-import { EmployeeNotFoundError } from './employee-not-found-error.js';
+import { Employee, EmployeeWithId } from '../models/employee';
+import { EmployeeNotFoundError } from './employee-not-found-error';
 
 export class EmployeesService {
+  private employees: EmployeeWithId[];
+
   constructor() {
     this.employees = [
       {
@@ -20,18 +21,18 @@ export class EmployeesService {
     ];
   }
 
-  getAll() {
+  getAll(): Employee[] {
     return this.employees;
   }
 
-  async get(employeeId) {
+  async get(employeeId: number) {
     await new Promise(resolve => setTimeout(resolve, 1000));
     const employee = this.employees.find(e => e.id === employeeId);
     if (!employee) throw new EmployeeNotFoundError(employeeId);
     return employee;
   }
 
-  add(employeeDetails) {
+  add(employeeDetails: Employee) {
     const maximumId = this.employees
       .map(e => e.id)
       .reduce((maxId, currentId) => currentId > maxId ? currentId : maxId);
@@ -43,7 +44,7 @@ export class EmployeesService {
     return employeeId;
   }
 
-  update(employeeId, employeeDetailsToUpdate) {
+  update(employeeId: number, employeeDetailsToUpdate: Partial<Employee>) {
     const employeeIndex = this.employees.findIndex(e => e.id === employeeId);
     if (employeeIndex === -1) throw new EmployeeNotFoundError(employeeId);
 
@@ -53,7 +54,7 @@ export class EmployeesService {
     };
   }
 
-  delete(employeeId) {
+  delete(employeeId: number) {
     const employeeIndex = this.employees.findIndex(e => e.id === employeeId);
     if (employeeIndex === -1) throw new EmployeeNotFoundError(employeeId);
 
