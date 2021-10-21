@@ -35,7 +35,7 @@ app.use(OpenApiValidator.middleware({
 
 EmployeesController.registerRoutes(app, new EmployeesService());
 
-app.use((err: Error, _req: any, res: ResponseType, _next: any) => {
+app.use((err: Error, _req: any, res: express.Response, _next: any) => {
   console.error(err);
   res.status((err as ExpressError).status || 500).json({
     message: err.message
@@ -45,5 +45,3 @@ app.use((err: Error, _req: any, res: ResponseType, _next: any) => {
 app.listen(port);
 
 console.log('Employees API server started on port ' + port);
-
-type ResponseType = { status: (status: number) => any };
