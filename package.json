@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A REST service for managing an employees data store",
   "private": true,
-  "type": "commonjs",
   "scripts": {
     "build:prod": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",

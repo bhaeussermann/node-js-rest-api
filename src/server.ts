@@ -25,7 +25,7 @@ const swaggerJsDocOptions = {
 const apiSpec = swaggerJsDoc(swaggerJsDocOptions) as unknown as string;
 
 app.get('/swagger.json', (_req, res) => res.json(apiSpec));
-app.use('/swagger', swaggerUi.serve, swaggerUi.setup(null, { swaggerOptions: { url: '/swagger.json' } }));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(undefined, { swaggerOptions: { url: '/swagger.json' } }));
 
 app.use(OpenApiValidator.middleware({
   apiSpec,
