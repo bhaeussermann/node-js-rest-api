@@ -1,4 +1,4 @@
-import { Employee, EmployeeWithId } from 'src/models/employee';
+import { Employee, EmployeeWithId } from '../models/employee';
 import { EmployeeNotFoundError } from './employee-not-found-error';
 
 export class EmployeesService {
